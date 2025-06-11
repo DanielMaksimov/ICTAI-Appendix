@@ -64,3 +64,16 @@ if __name__ == "__main__":
 
         ssus = np.array(silhouette_scores_us) #This is our heatmap of silhouette score
         np.save("my/path/to/heatmap_file.npy", ssus)
+
+    # Plotting the heatmap
+    # Cluster range: 2 to 15
+    # Topic range: 200 to 5, decreasing by 5
+    plt.figure(figsize=(len(topic_range) * 0.5, len(cluster_range) * 0.5))
+    sns.heatmap(ssus, xticklabels=topic_range, yticklabels=cluster_range, cmap="viridis", annot=False, square=True)    
+    # Labels and title
+    plt.xlabel("Number of Topics")
+    plt.ylabel("Number of Clusters")
+    plt.title("Silhouette Score Heatmap")
+    # Show the heatmap
+    plt.show()
+
