@@ -30,19 +30,17 @@ def normalize_vectors_by_id(L1, L2):
     return result
 
 if __name__ == "__main__":
+    filtered_userarr = np.load() #Put the path to the unzipped {filtered_user} file here
+    filtered_textarr = np.load() #Put the path to the unzipped {filtered_text} file here
+    # The tweets and users were filtered by taking into account only users with more than 6 tweets in the London area
+
+    # Here we fit the BertModel for topic modelling to our data
+    docs = filtered_textarr
     representation_model = KeyBERTInspired()
     topic_model = BERTopic(representation_model=representation_model)
-    docs = filtered_text
-    
     topics, probs = topic_model.fit_transform(docs)
 
-    
-    filtered_userarr = np.load(
-        "/home/maksimov/PycharmProjects/tweet_collector/data/london/2_coordinates_only/filtered_user.npy")
-    filtered_textarr = np.load(
-        "/home/maksimov/PycharmProjects/tweet_collector/data/london/2_coordinates_only/filtered_text.npy")
-    docs = filtered_textarr
-
+    # We proceed to build the heatmap to determine optimal cluster number
     cluster_range = list(range(2, 16))  # Testing cluster numbers from 2 to 15
     topic_range = list(range(200, 4, -5))  # Testing topics from 200 to 5 in steps of 5
 
@@ -62,4 +60,4 @@ if __name__ == "__main__":
             silhouette_scores_us[i, j] = us_score
 
         ssus = np.array(silhouette_scores_us) #This is our heatmap of silhouette score
-        np.save("/home/maksimov/PycharmProjects/tweet_collector/data/london/bert_analysis/heatmap200_us.npy", ssus)
+        np.save("my/path/to/heatmap_file.npy", ssus)
