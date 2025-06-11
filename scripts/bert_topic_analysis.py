@@ -9,6 +9,9 @@ from sklearn.cluster import KMeans, MiniBatchKMeans
 from sklearn.metrics import silhouette_samples, silhouette_score
 import matplotlib.cm as cm
 
+# ********** This script is for building the heatmap necessary to get the optimal number of topics and user clusters for Bert topic analysis *******************
+
+
 def normalize_vectors_by_id(L1, L2):
     """
     Computes the normalized sum of vectors in L1 grouped by corresponding IDs in L2.
@@ -61,3 +64,16 @@ if __name__ == "__main__":
 
         ssus = np.array(silhouette_scores_us) #This is our heatmap of silhouette score
         np.save("my/path/to/heatmap_file.npy", ssus)
+
+    # Plotting the heatmap
+    # Cluster range: 2 to 15
+    # Topic range: 200 to 5, decreasing by 5
+    plt.figure(figsize=(len(topic_range) * 0.5, len(cluster_range) * 0.5))
+    sns.heatmap(ssus, xticklabels=topic_range, yticklabels=cluster_range, cmap="viridis", annot=False, square=True)    
+    # Labels and title
+    plt.xlabel("Number of Topics")
+    plt.ylabel("Number of Clusters")
+    plt.title("Silhouette Score Heatmap")
+    # Show the heatmap
+    plt.show()
+
