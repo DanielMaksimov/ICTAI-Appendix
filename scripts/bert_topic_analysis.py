@@ -30,8 +30,13 @@ def normalize_vectors_by_id(L1, L2):
     return result
 
 if __name__ == "__main__":
-    topic_model = BERTopic.load(
-        "/home/maksimov/PycharmProjects/tweet_collector/data/london/2_coordinates_only/my_topic_model")
+    representation_model = KeyBERTInspired()
+    topic_model = BERTopic(representation_model=representation_model)
+    docs = filtered_text
+    
+    topics, probs = topic_model.fit_transform(docs)
+
+    
     filtered_userarr = np.load(
         "/home/maksimov/PycharmProjects/tweet_collector/data/london/2_coordinates_only/filtered_user.npy")
     filtered_textarr = np.load(
