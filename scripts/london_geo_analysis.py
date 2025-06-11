@@ -31,6 +31,8 @@ def voronoi_construction():
   
   user_coord = []
   coordinates_list = []
+
+  # Here the tw_l list is the list containing each all tweets geolocated in London published in 2023. This dataset is not available in this repository.
   for tweet in tw_l:
       tweet_coordinates = tweet['geo']['coordinates']['coordinates']
       point = Point(tweet_coordinates[0], tweet_coordinates[1])
