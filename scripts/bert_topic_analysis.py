@@ -102,12 +102,10 @@ def normalize_vectors_by_id(L1, L2):
     """
     Computes the normalized sum of vectors in L1 grouped by corresponding IDs in L2.
 
-    Parameters:
-        L1 (list of lists or numpy arrays): List of vectors.
-        L2 (list): List of IDs corresponding to each vector in L1.
+        :param L1: List of vectors.
+        :param L2: List of IDs corresponding to each vector in L1.
 
-    Returns:
-        dict: Keys are unique IDs from L2, values are the normalized sum of vectors.
+        :return: Dict where keys are unique IDs from L2, values are the normalized sum of vectors.
     """
     vector_sums = defaultdict(lambda: np.zeros_like(L1[0]))
     count = defaultdict(int)
