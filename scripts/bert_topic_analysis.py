@@ -9,6 +9,9 @@ from sklearn.cluster import KMeans, MiniBatchKMeans
 from sklearn.metrics import silhouette_samples, silhouette_score
 import matplotlib.cm as cm
 
+# ********** This script is for building the heatmap necessary to get the optimal number of topics and user clusters for Bert topic analysis *******************
+
+
 def normalize_vectors_by_id(L1, L2):
     """
     Computes the normalized sum of vectors in L1 grouped by corresponding IDs in L2.
